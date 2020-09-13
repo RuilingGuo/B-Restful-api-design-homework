@@ -2,12 +2,10 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Group;
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.GroupNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class GroupService {
@@ -54,5 +52,14 @@ public class GroupService {
 
     public List<Group> findGroups(){
         return this.groupList;
+    }
+
+    public void updateGroupName(Integer groupId,String updateName) {
+        Optional<Group> groupOptional = groupList.stream().filter(e -> e.getId().equals(groupId)).findFirst();
+        if(!groupOptional.isPresent()){
+            throw new GroupNotFoundException("该小组不存在");
+        }
+        Group group =  groupOptional.get();
+        group.setName(updateName);
     }
 }
