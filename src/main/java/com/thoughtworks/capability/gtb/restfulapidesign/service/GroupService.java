@@ -51,4 +51,8 @@ public class GroupService {
         groupList.forEach(team -> team.getStudentList().sort(Comparator.comparingInt(Student::getId)));
         this.groupList= groupList;
     }
+
+    public List<Group> findGroups(){
+        return this.groupList;
+    }
 }
