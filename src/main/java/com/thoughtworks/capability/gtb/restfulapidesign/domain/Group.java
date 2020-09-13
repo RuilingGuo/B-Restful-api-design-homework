@@ -21,6 +21,7 @@ public class Group {
         this.id = id;
         this.name ="Group "+groupIndex;
         this.studentList = new ArrayList<>();
+        this.note = "无备注";
     }
 
     public void addStudent(Student student){

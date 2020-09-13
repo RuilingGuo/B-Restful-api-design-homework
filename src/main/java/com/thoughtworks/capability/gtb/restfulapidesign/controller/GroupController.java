@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/group")
+@RequestMapping("/v1/groups")
 public class GroupController {
 
     private GroupService groupService;
@@ -28,8 +28,8 @@ public class GroupController {
 
     @PatchMapping()
     public void updateGroupName(@RequestParam Integer groupId,
-                            @RequestParam String updateName){
-        groupService.updateGroupName(groupId, updateName);
+                            @RequestParam String name){
+        groupService.updateGroupName(groupId, name);
     }
 
 }
