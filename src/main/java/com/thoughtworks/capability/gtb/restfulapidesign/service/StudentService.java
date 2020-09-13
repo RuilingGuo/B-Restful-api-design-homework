@@ -2,11 +2,11 @@ package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
 import com.thoughtworks.capability.gtb.restfulapidesign.exception.UserNotFoundException;
+import com.thoughtworks.capability.gtb.restfulapidesign.pojo.Gender;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static javax.swing.UIManager.get;
 
@@ -29,8 +29,16 @@ public class StudentService {
     }
 
     public void saveStudent(Student student){
+        student.setId(STUDENT_INC_ID);
         studentList.put(STUDENT_INC_ID,student);
         STUDENT_INC_ID++;
     }
 
+    public List<Student> findStudentsByGender(Gender gender) {
+        List<Student> students = new ArrayList<Student>(studentList.values());
+        if(gender==null){
+            return students;
+        }
+        return students.stream().filter(student -> student.getGender()==gender).collect(Collectors.toList());
+    }
 }
