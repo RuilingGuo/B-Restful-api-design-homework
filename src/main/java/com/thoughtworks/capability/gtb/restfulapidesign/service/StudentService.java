@@ -41,4 +41,8 @@ public class StudentService {
         }
         return students.stream().filter(student -> student.getGender()==gender).collect(Collectors.toList());
     }
+
+    public void deleteStudentById(Integer id) {
+        studentList.remove(id);
+    }
 }

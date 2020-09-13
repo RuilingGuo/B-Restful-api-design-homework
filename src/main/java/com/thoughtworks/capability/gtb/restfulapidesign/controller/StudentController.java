@@ -32,4 +32,9 @@ public class StudentController {
         return studentService.findStudentsByGender(gender);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteStudentById(@PathVariable Integer id){
+        studentService.deleteStudentById(id);
+    }
+
 }
