@@ -1,7 +1,7 @@
 package com.thoughtworks.capability.gtb.restfulapidesign.service;
 
 import com.thoughtworks.capability.gtb.restfulapidesign.domain.Student;
-import com.thoughtworks.capability.gtb.restfulapidesign.exception.UserNotFoundException;
+import com.thoughtworks.capability.gtb.restfulapidesign.exception.StudentNotFoundException;
 import com.thoughtworks.capability.gtb.restfulapidesign.pojo.Gender;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class StudentService {
     public Student findStudentById(Integer id) {
         Optional<Student> studentOptional = Optional.ofNullable(studentList.get(id));
         if(!studentOptional.isPresent()){
-            throw new UserNotFoundException("此用户不存在");
+            throw new StudentNotFoundException("此用户不存在");
         }
         return studentOptional.get();
     }
@@ -44,5 +44,12 @@ public class StudentService {
 
     public void deleteStudentById(Integer id) {
         studentList.remove(id);
+    }
+
+    public void updateStudent(Student student) {
+        if(!studentList.containsKey(student.getId())){
+            throw new StudentNotFoundException("此用户不存在");
+        }
+        studentList.put(student.getId(),student);
     }
 }

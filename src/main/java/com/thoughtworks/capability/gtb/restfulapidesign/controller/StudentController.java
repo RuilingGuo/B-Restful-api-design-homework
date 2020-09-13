@@ -37,4 +37,8 @@ public class StudentController {
         studentService.deleteStudentById(id);
     }
 
+    @PatchMapping()
+    public void updateStudent(@RequestBody Student student){
+        studentService.updateStudent(student);
+    }
 }

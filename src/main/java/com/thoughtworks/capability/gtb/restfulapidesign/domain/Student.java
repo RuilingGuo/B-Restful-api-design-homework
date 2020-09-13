@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class Student {
 
     private Integer id;
-
     private String name;
     private Gender gender;
     private String note;
