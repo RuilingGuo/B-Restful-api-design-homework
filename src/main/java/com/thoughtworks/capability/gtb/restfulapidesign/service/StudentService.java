@@ -52,4 +52,8 @@ public class StudentService {
         }
         studentList.put(student.getId(),student);
     }
+
+    public List<Student> getStudentList() {
+        return new ArrayList<Student>(studentList.values());
+    }
 }
